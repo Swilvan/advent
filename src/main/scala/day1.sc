@@ -14,8 +14,8 @@ sumSame(input)
 
 def sumHalfWayAcross(numbers: String) = {
   val numberArr = numberStringToArrayInt(numbers)
-  val halfWayAcross = numberArr.slice(numberArr.length / 2, numberArr.length) ++ numberArr.slice(0, numberArr.length / 2)
-  val pairs = (numberArr zip halfWayAcross).map { pair => Array(pair._1, pair._2) }
+  val (secondHalf, firstHalf) = numberArr.splitAt(numberArr.length / 2).swap
+  val pairs = (numberArr zip secondHalf ++ firstHalf).map { case (p1, p2) => Array(p1, p2) }
 
   sumIfEqualPair(pairs.toSeq)
 }
